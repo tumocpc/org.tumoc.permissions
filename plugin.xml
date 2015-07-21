@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="org.marmorkuchen.permissions" version="0.0.1"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>cordova-permissions</name>
+    <description>Read system permissions for app during runtime</description>
+    <js-module name="CordovaPermissions" src="www/cordova-permissions.js">
+        <clobbers target="cordova.plugins.permissions" />
+    </js-module>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="CordovaPermissions">
+                <param name="ios-package" value="CordovaPermissions" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/CordovaPermissions.m" />
+        <source-file src="src/ios/CordovaPermissions.h" />
+    </platform>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="CordovaPermissions">
+                <param name="android-package" value="org.marmorkuchen.permissions.CordovaPermissions" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <source-file src="src/android/CordovaPermissions.java" target-dir="src/org/marmorkuchen/permissions" />
+        <source-file src="src/android/PermissionUtils.java" target-dir="src/org/marmorkuchen/permissions" />
+    </platform>
+</plugin>
