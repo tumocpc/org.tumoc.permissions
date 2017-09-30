@@ -4,8 +4,8 @@ Read system permissions for cordova app during runtime.
 
 ### Install
 
-To add this plugin: `cordova plugin add https://github.com/marmorkuchen-net/cordova-permissions`
-To remove this plugin: `cordova plugin remove org.marmorkuchen.permissions`
+To add this plugin: `cordova plugin add https://github.com/tumoc-net/cordova-permissions`
+To remove this plugin: `cordova plugin remove org.tumoc.permissions`
 
 ### Note
 
