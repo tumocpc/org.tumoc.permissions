@@ -1,4 +1,4 @@
-package org.marmorkuchen.permissions;
+package org.tumoc.permissions;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
