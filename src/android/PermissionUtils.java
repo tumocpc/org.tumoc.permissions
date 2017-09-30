@@ -1,4 +1,4 @@
-package org.marmorkuchen.permissions;
+package org.tumoc.permissions;
 
 import android.app.AppOpsManager;
 import android.content.Context;
