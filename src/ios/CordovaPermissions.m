@@ -30,8 +30,8 @@
     return isEnabled;
 }
 
-- (void)get:(CDVInvokedUrlCommand*)command
-{
+- (void)get:(CDVInvokedUrlCommand*)command {
+    
     
     BOOL push=NO;
     BOOL location=NO;
@@ -40,29 +40,27 @@
     
     @ try {
         
-        if ([self isNotificationServicesEnabled]) push=YES;
+        if ([self isNotificationServicesEnabled]) {
+            
+        } else {
+            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes: UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge categories:nil];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
+        }
         
-        if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) location=NO;
-        else if(![CLLocationManager locationServicesEnabled]) location=NO;
-        else location=YES;
         
-        NSMutableDictionary* returnInfo = [NSMutableDictionary dictionaryWithCapacity:2];
+        NSMutableDictionary* returnInfo = [NSMutableDictionary dictionaryWithCapacity:1];
         
-        [returnInfo setObject:[NSNumber numberWithBool:location] forKey:@"geolocation"];
         [returnInfo setObject:[NSNumber numberWithBool:push] forKey:@"notification"];
         
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary : returnInfo];
         
     } @catch (NSException * e) {
-        
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:[e reason]];
         
     } @finally {
-        
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-        
     }
-    
 }
 
 @end
